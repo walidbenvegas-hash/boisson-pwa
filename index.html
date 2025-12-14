@@ -8,7 +8,8 @@
   <meta name="theme-color" content="#111827">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+  
 
   <style>
     body {
@@ -95,37 +96,50 @@
       </tr>
 
       <tr class="brand"><td colspan="2">COCA-COLA COMPANY</td></tr>
-      <tr><td>Coca</td><td><input type="number" value="0" min="0" onfocus="if(this.value=='0')this.value=' ';onblur="if(this.value==' ')this.value='0';"></td></tr>
-      <tr><td>Coca Cherry</td><td><input type="number" value="0" min="0" onfocus="if(this.value=='0')this.value=' ';onblur="if(this.value==' ')this.value='0';"></td></tr>
-      <tr><td>Coca Zéro</td><td><input type="number" value="0" min="0" onfocus="if(this.value=='0')this.value=' ';onblur="if(this.value==' ')this.value='0';"></td></tr>
-      <tr><td>Coca Zéro (50cl)</td><td><input type="number" value="0" min="0" onfocus="if(this.value=='0')this.value=' ';onblur="if(this.value==' ')this.value='0';"></td></tr>
-      <tr><td>Fanta citron</td><td><input type="number" value="0" min="0" onfocus="if(this.value=='0')this.value=' ';onblur="if(this.value==' ')this.value='0';"></td></tr>
-      <tr><td>Fanta dragon</td><td><input type="number" value="0" min="0" onfocus="if(this.value=='0')this.value=' ';onblur="if(this.value==' ')this.value='0';"></td></tr>
-      <tr><td>Fuze Tea</td><td><input type="number" value="0" min="0" onfocus="if(this.value=='0')this.value=' ';onblur="if(this.value==' ')this.value='0';"></td></tr>
-      <tr><td>Oasis PCF</td><td><input type="number" value="0" min="0" onfocus="if(this.value=='0')this.value=' ';onblur="if(this.value==' ')this.value='0';"></td></tr>
-      <tr><td>Oasis tropical</td><td><input type="number" value="0" min="0" onfocus="if(this.value=='0')this.value=' ';onblur="if(this.value==' ')this.value='0';"></td></tr>
-      <tr><td>Sprite</td><td><input type="number" value="0" min="0" onfocus="if(this.value=='0')this.value=' ';onblur="if(this.value==' ')this.value='0';"></td></tr>
-      <tr><td>Tropico</td><td><input type="number" value="0" min="0" onfocus="if(this.value=='0')this.value=' ';onblur="if(this.value==' ')this.value='0';"></td></tr>
+      <tr><td>Coca</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
+      <tr><td>Coca Cherry</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
+      <tr><td>Coca Zéro</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
+      <tr><td>Coca Zéro (50cl)</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
+      <tr><td>Fanta citron</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
+      <tr><td>Fanta dragon</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
+      <tr><td>Fuze Tea</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
+      <tr><td>Oasis PCF</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
+      <tr><td>Oasis tropical</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
+      <tr><td>Sprite</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
+      <tr><td>Tropico</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
 
       <tr class="brand"><td colspan="2">RED BULL</td></tr>
-      <tr><td>Redbull orange</td><td><input type="number" value="0" min="0" onfocus="if(this.value=='0')this.value=' ';onblur="if(this.value==' ')this.value='0';"></td></tr>
-      <tr><td>Redbull rouge</td><td><input type="number" value="0" min="0" onfocus="if(this.value=='0')this.value=' ';onblur="if(this.value==' ')this.value='0';"></td></tr>
-      <tr><td>Redbull simple</td><td><input type="number" value="0" min="0" onfocus="if(this.value=='0')this.value=' ';onblur="if(this.value==' ')this.value='0';"></td></tr>
+      <tr><td>Redbull orange</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
+      <tr><td>Redbull rouge</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
+      <tr><td>Redbull simple</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
 
       <tr class="brand"><td colspan="2">DANONE</td></tr>
-      <tr><td>Badoit</td><td><input type="number" value="0" min="0" onfocus="if(this.value=='0')this.value=' ';onblur="if(this.value==' ')this.value='0';"></td></tr>
-      <tr><td>Evian</td><td><input type="number" value="0" min="0" onfocus="if(this.value=='0')this.value=' ';onblur="if(this.value==' ')this.value='0';"></td></tr>
+      <tr><td>Badoit</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
+      <tr><td>Evian</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
 
       <tr class="brand"><td colspan="2">AUTRES</td></tr>
-      <tr><td>Caprisun</td><td><input type="number" value="0" min="0" onfocus="if(this.value=='0')this.value=' ';onblur="if(this.value==' ')this.value='0';"></td></tr>
-      <tr><td>Cristalline</td><td><input type="number" value="0" min="0" onfocus="if(this.value=='0')this.value=' ';onblur="if(this.value==' ')this.value='0';"></td></tr>
-      <tr><td>Hawai</td><td><input type="number" value="0" min="0" onfocus="if(this.value=='0')this.value=' ';onblur="if(this.value==' ')this.value='0';"></td></tr>
-      <tr><td>Orangina</td><td><input type="number" value="0" min="0" onfocus="if(this.value=='0')this.value=' ';onblur="if(this.value==' ')this.value='0';"></td></tr>
+      <tr><td>Caprisun</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
+      <tr><td>Cristalline</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
+      <tr><td>Hawai</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
+      <tr><td>Orangina</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
     </table>
   </div>
 
   <button onclick="exportPDF()">Exporter en PDF</button>
+ 
+<script>
+// listner_for_change_value_on_click 
+	document.querySelectorAll('.qty-input').forEach(input => {
+  input.addEventListener('focus', () => {
+    if(input.value === '0') input.value = '';
+  });
+  
+  input.addEventListener('blur', () => {
+    if(input.value === '') input.value = '0';
+  });
+});
 
+  </script>
   <script>
     document.getElementById("date").innerText =
       new Date().toLocaleDateString("fr-FR") + " – " +
@@ -133,32 +147,40 @@
 
     async function exportPDF() {
   const { jsPDF } = window.jspdf;
-  const pdf = new jsPDF('p', 'mm', 'a4');
-  const content = document.getElementById('pdf-content');
+  const doc = new jsPDF();
 
-  // Capture the content
-  const canvas = await html2canvas(content, { scale: 1 }); // scale 1 = smaller image
-  const imgData = canvas.toDataURL('image/jpeg', 0.7); // JPEG + 0.7 quality reduces size
+  // Add header
+  const now = new Date();
+  doc.setFontSize(14);
+  doc.text("SAS BBB Besançon", 105, 15, { align: "center" });
+  doc.setFontSize(10);
+  doc.text(`7 rue Luc Breton`, 105, 22, { align: "center" });
+  doc.text(`${now.toLocaleDateString()} – ${now.toLocaleTimeString()}`, 105, 28, { align: "center" });
 
-  // Calculate width/height
-  const pdfWidth = pdf.internal.pageSize.getWidth();
-  const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+  // Define table data
+  const columns = ["Boisson", "Quantité"];
+  const data = [];
 
-  let heightLeft = pdfHeight;
-  let position = 0;
+  document.querySelectorAll("table tr").forEach(tr => {
+    const tds = tr.querySelectorAll("td");
+    if(tds.length === 2) {
+      data.push([tds[0].innerText || tds[0].querySelector('input')?.value, 
+                 tds[1].querySelector('input')?.value || '0']);
+    }
+  });
 
-  pdf.addImage(imgData, 'JPEG', 0, position, pdfWidth, pdfHeight);
-  heightLeft -= pdf.internal.pageSize.getHeight();
+  // Use autoTable
+  doc.autoTable({
+    head: [columns],
+    body: data,
+    startY: 35,
+    theme: 'grid',
+    styles: { fontSize: 13 },
+    headStyles: { fillColor: [35,35,35], textColor: 255, fontStyle: 'bold' },
+    bodyStyles: { fontSize: 13, fontStyle: 'bold', textColor: 0 }
+  });
 
-  // Add new pages if content is taller than one page
-  while (heightLeft > 0) {
-    position = heightLeft - pdfHeight;
-    pdf.addPage();
-    pdf.addImage(imgData, 'JPEG', 0, position, pdfWidth, pdfHeight);
-    heightLeft -= pdf.internal.pageSize.getHeight();
-  }
-
-  pdf.save('commande-boissons.pdf');
+  doc.save("commande-boissons.pdf");
 }
 
 
@@ -166,7 +188,6 @@
       navigator.serviceWorker.register('service-worker.js');
     }
   </script>
-
+  
 </body>
-
 </html>
