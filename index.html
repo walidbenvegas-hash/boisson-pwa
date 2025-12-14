@@ -4,190 +4,170 @@
   <meta charset="UTF-8" />
   <title>Commande Boissons – SAS BBB Besançon</title>
 
+  <!-- PWA -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#111827">
 
+  <!-- jsPDF & autoTable -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
-  
 
   <style>
     body {
       font-family: 'Segoe UI', Roboto, Arial, sans-serif;
       background: linear-gradient(135deg, #111827, #1f2933);
       padding: 20px;
-      color: #111;
     }
     .container {
       max-width: 900px;
       margin: auto;
       background: #ffffff;
       padding: 25px;
-      border-radius: 14px;
+      border-radius: 16px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.25);
     }
-    h1 {
-      text-align: center;
-      margin-bottom: 5px;
-      font-size: 28px;
-    }
-    .header-info {
-      text-align: center;
-      font-size: 14px;
-      margin-bottom: 25px;
-      color: #555;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    th {
-      background: #111827;
-      color: white;
-      padding: 12px;
-    }
-    td {
-      border-bottom: 1px solid #eee;
-      padding: 10px;
-    }
-    .brand {
-      background: #f3f4f6;
-      font-weight: bold;
-      text-align: center;
-      color: #111827;
-    }
-    input {
-      width: 100%;
-      padding: 8px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      text-align: center;
-      font-size: 15px;
-    }
-    button {
-      margin-top: 25px;
-      width: 100%;
-      padding: 14px;
-      font-size: 17px;
-      background: linear-gradient(135deg, #111827, #374151);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-    }
-    button:hover {
-      opacity: 0.9;
-    }
+    h1 { text-align:center; margin-bottom:6px; }
+    .header-info { text-align:center; font-size:14px; color:#555; margin-bottom:25px; }
+    table { width:100%; border-collapse:collapse; }
+    th { background:#111827; color:white; padding:12px; }
+    td { padding:10px; border-bottom:1px solid #eee; }
+    .brand { background:#f3f4f6; font-weight:bold; text-align:center; }
+    input { width:100%; padding:8px; border-radius:8px; border:1px solid #ccc; text-align:center; }
+    .actions { display:flex; gap:12px; margin-top:25px; }
+    button { flex:1; padding:14px; font-size:16px; border:none; border-radius:12px; cursor:pointer; }
+    .export { background:linear-gradient(135deg,#111827,#374151); color:white; }
+    .reset { background:#e5e7eb; }
+    .summary { margin-top:20px; font-weight:bold; text-align:right; }
   </style>
 </head>
 <body>
+<div class="container">
+  <h1>SAS BBB Besançon</h1>
+  <div class="header-info">7 rue Luc Breton<br><span id="date"></span></div>
 
-  <div class="container" id="pdf-content">
-    <h1>SAS BBB Besançon</h1>
-    <div class="header-info">
-      7 rue Luc Breton<br>
-      <span id="date"></span>
-    </div>
+  <table id="boissons-table">
+    <tr><th>Boisson</th><th>Stock actuel</th></tr>
 
-    <table>
-      <tr>
-        <th>Boisson</th>
-        <th>Quantité à acheter</th>
-      </tr>
+    <tr class="brand"><td colspan="2">COCA-COLA COMPANY</td></tr>
+    <tr><td>Coca</td><td><input class="qty-input" type="number" value="0" min="0" step="0.01" data-weekly="14"></td></tr>
+    <tr><td>Coca (50cl)</td><td><input class="qty-input" type="number" value="0" min="0" step="0.01" data-weekly="3,5"></td></tr>
+    <tr><td>Coca Cherry</td><td><input class="qty-input" type="number" value="0" min="0" step="0.01" data-weekly="14"></td></tr>
+    <tr><td>Coca Cherry (50cl)</td><td><input class="qty-input" type="number" value="0" step="0.01" min="0" data-weekly="3,5"></td></tr>
+    <tr><td>Coca Zéro</td><td><input class="qty-input" type="number" value="0" min="0" step="0.01" data-weekly="2,1"></td></tr>
+    <tr><td>Coca Zéro (50cl)</td><td><input class="qty-input" type="number" value="0" min="0" step="0.01" data-weekly="3,5"></td></tr>
+    <tr><td>Fanta citron</td><td><input class="qty-input" type="number" value="0" min="0" step="0.01" data-weekly="3,5"></td></tr>
+    <tr><td>Fanta orange</td><td><input class="qty-input" type="number" value="0" min="0" step="0.01" data-weekly="3,5"></td></tr> 
+    <tr><td>Fanta dragon</td><td><input class="qty-input" type="number" value="0" min="0" step="0.01" data-weekly="5,25"></td></tr>
+    <tr><td>Fuze Tea</td><td><input class="qty-input" type="number" value="0" min="0" step="0.01" data-weekly="7"></td></tr>
+    <tr><td>Oasis PCF</td><td><input class="qty-input" type="number" value="0" min="0" step="0.01" data-weekly="5,25"></td></tr>
+    <tr><td>Oasis tropical</td><td><input class="qty-input" type="number" value="0" min="0" step="0.01" data-weekly="3,5"></td></tr>
+    <tr><td>Sprite</td><td><input class="qty-input" type="number" value="0" min="0" step="0.01" data-weekly="1,75"></td></tr>
+    <tr><td>Tropico</td><td><input class="qty-input" type="number" value="0" min="0" step="0.01" data-weekly="3,5"></td></tr>
 
-      <tr class="brand"><td colspan="2">COCA-COLA COMPANY</td></tr>
-      <tr><td>Coca</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
-      <tr><td>Coca Cherry</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
-      <tr><td>Coca Zéro</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
-      <tr><td>Coca Zéro (50cl)</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
-      <tr><td>Fanta citron</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
-      <tr><td>Fanta dragon</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
-      <tr><td>Fuze Tea</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
-      <tr><td>Oasis PCF</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
-      <tr><td>Oasis tropical</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
-      <tr><td>Sprite</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
-      <tr><td>Tropico</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
+    <tr class="brand"><td colspan="2">RED BULL</td></tr>
+    <tr><td>Redbull simple</td><td><input class="qty-input" type="number" value="0" min="0" step="0.01" data-weekly="2,1"></td></tr>
+    <tr><td>Redbull rouge</td><td><input class="qty-input" type="number" value="0" min="0" step="0.01" data-weekly="2,1"></td></tr>
+    <tr><td>Redbull orange</td><td><input class="qty-input" type="number" value="0" min="0" step="0.01" data-weekly="2,1"></td></tr>
 
-      <tr class="brand"><td colspan="2">RED BULL</td></tr>
-      <tr><td>Redbull orange</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
-      <tr><td>Redbull rouge</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
-      <tr><td>Redbull simple</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
+    <tr class="brand"><td colspan="2">DANONE</td></tr>
+    <tr><td>Badoit</td><td><input class="qty-input" type="number" value="0" min="0" step="0.01" data-weekly="1,75"></td></tr>
+    <tr><td>Evian</td><td><input class="qty-input" type="number" value="0" min="0" step="0.01" data-weekly="3,5"></td></tr>
 
-      <tr class="brand"><td colspan="2">DANONE</td></tr>
-      <tr><td>Badoit</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
-      <tr><td>Evian</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
+    <tr class="brand"><td colspan="2">AUTRES</td></tr>
+    <tr><td>Caprisun</td><td><input class="qty-input" type="number" value="0" min="0" step="0.01" data-weekly="1,75"></td></tr>
+    <tr><td>Cristalline</td><td><input class="qty-input" type="number" value="0" min="0" step="0.01" data-weekly="5,25"></td></tr>
+    <tr><td>Hawai</td><td><input class="qty-input" type="number" value="0" min="0" step="0.01" data-weekly="5,25"></td></tr>
+    <tr><td>Orangina</td><td><input class="qty-input" type="number" value="0" min="0" step="0.01" data-weekly="2,1"></td></tr>
+  </table>
 
-      <tr class="brand"><td colspan="2">AUTRES</td></tr>
-      <tr><td>Caprisun</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
-      <tr><td>Cristalline</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
-      <tr><td>Hawai</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
-      <tr><td>Orangina</td><td><input type="number" value="0" min="0" class="qty-input"></td></tr>
-    </table>
+  <div class="summary">Total commande : <span id="total">0</span></div>
+
+  <div class="actions">
+    <button class="reset" onclick="resetStocks()">Réinitialiser</button>
+    <button class="export" onclick="exportPDF()">Exporter PDF</button>
   </div>
+</div>
 
-  <button onclick="exportPDF()">Exporter en PDF</button>
- 
 <script>
-// listner_for_change_value_on_click 
-	document.querySelectorAll('.qty-input').forEach(input => {
-  input.addEventListener('focus', () => {
-    if(input.value === '0') input.value = '';
-  });
-  
-  input.addEventListener('blur', () => {
-    if(input.value === '') input.value = '0';
-  });
-});
+  document.getElementById('date').innerText = new Date().toLocaleDateString('fr-FR') + ' – ' + new Date().toLocaleTimeString('fr-FR');
 
-  </script>
-  <script>
-    document.getElementById("date").innerText =
-      new Date().toLocaleDateString("fr-FR") + " – " +
-      new Date().toLocaleTimeString("fr-FR");
+  function calculateOrder(input) {
+  const weekly = parseFloat(input.dataset.weekly || 0);
+  const stockRaw = parseFloat(input.value || 0);
 
-    async function exportPDF() {
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
+  const integerPart = Math.floor(stockRaw);
+  const decimalPart = stockRaw - integerPart;
 
-  // Add header
-  const now = new Date();
-  doc.setFontSize(14);
-  doc.text("SAS BBB Besançon", 105, 15, { align: "center" });
-  doc.setFontSize(10);
-  doc.text(`7 rue Luc Breton`, 105, 22, { align: "center" });
-  doc.text(`${now.toLocaleDateString()} – ${now.toLocaleTimeString()}`, 105, 28, { align: "center" });
+  let stockRounded = integerPart;
 
-  // Define table data
-  const columns = ["Boisson", "Quantité"];
-  const data = [];
+  // RÈGLE MÉTIER
+  if (decimalPart >= 0.75) {
+    stockRounded += 1;
+  }
 
-  document.querySelectorAll("table tr").forEach(tr => {
-    const tds = tr.querySelectorAll("td");
-    if(tds.length === 2) {
-      data.push([tds[0].innerText || tds[0].querySelector('input')?.value, 
-                 tds[1].querySelector('input')?.value || '0']);
-    }
-  });
+  let order = weekly - stockRounded;
+  if (order < 0) order = 0;
 
-  // Use autoTable
-  doc.autoTable({
-    head: [columns],
-    body: data,
-    startY: 35,
-    theme: 'grid',
-    styles: { fontSize: 13 },
-    headStyles: { fillColor: [35,35,35], textColor: 255, fontStyle: 'bold' },
-    bodyStyles: { fontSize: 13, fontStyle: 'bold', textColor: 0 }
-  });
-
-  doc.save("commande-boissons.pdf");
+  return order;
 }
 
 
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js');
-    }
-  </script>
-  
+  function updateTotal() {
+    let total = 0;
+    document.querySelectorAll('.qty-input').forEach(i => total += calculateOrder(i));
+    document.getElementById('total').innerText = total;
+  }
+
+  document.querySelectorAll('.qty-input').forEach(input => {
+    input.addEventListener('focus', () => { if (input.value === '0') input.value = ''; });
+    input.addEventListener('blur', () => { if (input.value === '') input.value = '0'; updateTotal(); });
+    input.addEventListener('input', updateTotal);
+  });
+
+  function resetStocks() {
+    if (!confirm('Réinitialiser tous les stocks ?')) return;
+    document.querySelectorAll('.qty-input').forEach(i => i.value = '0');
+    updateTotal();
+  }
+
+  function exportPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    const now = new Date();
+
+    doc.setFontSize(14);
+    doc.text('SAS BBB Besançon', 105, 15, { align: 'center' });
+    doc.setFontSize(10);
+    doc.text('7 rue Luc Breton', 105, 22, { align: 'center' });
+    doc.text(now.toLocaleDateString('fr-FR') + ' – ' + now.toLocaleTimeString('fr-FR'), 105, 28, { align: 'center' });
+
+    const data = [];
+
+    document.querySelectorAll('#boissons-table tr').forEach(tr => {
+      const tds = tr.querySelectorAll('td');
+      if (tds.length === 2) {
+        const input = tds[1].querySelector('input');
+        if (input) {
+          const order = calculateOrder(input);
+          if (order > 0) data.push([tds[0].innerText, order]);
+        }
+      }
+    });
+
+    doc.autoTable({
+      head: [['Boisson', 'Commande']],
+      body: data,
+      startY: 35,
+      theme: 'grid',
+      headStyles: { fillColor: [30,30,30], textColor: 255, fontStyle: 'bold' },
+      bodyStyles: { textColor: 0, fontSize: 11 },
+      alternateRowStyles: { fillColor: [245,245,245] }
+    });
+
+    doc.save('commande-boissons.pdf');
+  }
+
+  updateTotal();
+</script>
 </body>
 </html>
